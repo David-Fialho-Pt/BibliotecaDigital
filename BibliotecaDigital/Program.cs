@@ -1,3 +1,6 @@
+
+using Forms;
+
 namespace BibliotecaDigital
 {
     internal static class Program
