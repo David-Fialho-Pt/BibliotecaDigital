@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Biblioteca_Digital.DataAcess;
+using Biblioteca_Digital.Modelos;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +14,8 @@ namespace Forms
 {
     public partial class FormGestaoLivros : Form
     {
+        int idLivroSelecionado = 0;
+
         public FormGestaoLivros()
         {
             InitializeComponent();
@@ -19,7 +23,152 @@ namespace Forms
 
         private void FormGestaoLivros_Load(object sender, EventArgs e)
         {
+            CarregarLivros();
+        }
+
+        private void btnVolttar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void LimparCampos()
+        {
+            tbTitulo.Clear();
+            tbAno.Clear();
+            tbEditora.Clear();
+            tbIsbn.Clear();
+        }
+
+
+        private void btnAdicionar_Click(object sender, EventArgs e)
+        {
+            if (!int.TryParse(tbAno.Text, out int ano))
+            {
+                MessageBox.Show("O ano de publicação tem de ser um número válido.");
+                tbAno.Clear();
+                tbAno.Focus();
+                return;
+            }
+
+            try
+            {
+                Livro livro = new Livro
+                {
+                    Titulo = tbTitulo.Text,
+                    AnoPublicacao = ano,
+                    Editora = tbEditora.Text,
+                    ISBN = tbIsbn.Text
+                };
+
+                GlobalConfig.Connection.CriarLivro(livro);
+
+                MessageBox.Show("Livro adicionado com sucesso!");
+
+                CarregarLivros();
+                LimparCampos();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao adicionar livro: " + ex.Message);
+                LimparCampos();
+            }
+
 
         }
+
+        private void btnLimparFormularioLivro_Click(object sender, EventArgs e)
+        {
+            LimparCampos();
+        }
+
+        private void dgvLivros_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dgvLivros.Rows[e.RowIndex];
+
+                idLivroSelecionado = Convert.ToInt32(row.Cells["IdLivro"].Value);
+
+                tbTitulo.Text = row.Cells["Titulo"].Value.ToString();
+                tbAno.Text = row.Cells["AnoPublicacao"].Value.ToString();
+                tbEditora.Text = row.Cells["Editora"].Value.ToString();
+                tbIsbn.Text = row.Cells["ISBN"].Value.ToString();
+            }
+        }
+        private void CarregarLivros()
+        {
+            var livros = GlobalConfig.Connection.ListarLivros();
+            dgvLivros.DataSource = livros;
+        }
+
+        private void btnRemoverLivro_Click(object sender, EventArgs e)
+        {
+
+            if (idLivroSelecionado == 0)
+            {
+                MessageBox.Show("Selecione um livro primeiro.");
+                return;
+            }
+
+            DialogResult r = MessageBox.Show(
+                "Tem a certeza que quer remover este livro?",
+                "Confirmar",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (r == DialogResult.Yes)
+            {
+                GlobalConfig.Connection.RemoverLivro(idLivroSelecionado);
+                MessageBox.Show("Livro removido com sucesso!");
+
+                CarregarLivros();
+                LimparCampos();
+                idLivroSelecionado = 0;
+
+            }
+
+        }
+
+        private void btnAtualizarLivro_Click(object sender, EventArgs e)
+        {
+            if (idLivroSelecionado == 0)
+            {
+                MessageBox.Show("Selecione um livro primeiro.");
+                return;
+            }
+
+            if (!int.TryParse(tbAno.Text, out int ano))
+            {
+                MessageBox.Show("O ano de publicação tem de ser um número.");
+                tbAno.Clear();
+                tbAno.Focus();
+                return;
+            }
+
+            try
+            {
+                Livro livro = new Livro
+                {
+                    IdLivro = idLivroSelecionado,
+                    Titulo = tbTitulo.Text,
+                    AnoPublicacao = ano,
+                    Editora = tbEditora.Text,
+                    ISBN = tbIsbn.Text
+                };
+
+                GlobalConfig.Connection.AtualizarLivro(livro);
+
+                MessageBox.Show("Livro atualizado com sucesso!");
+
+                CarregarLivros();
+                LimparCampos();
+                idLivroSelecionado = 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao atualizar livro: " + ex.Message);
+            }
+        }
+
     }
 }

@@ -174,6 +174,7 @@
             btnVolttar.TabIndex = 18;
             btnVolttar.Text = "Voltar";
             btnVolttar.UseVisualStyleBackColor = false;
+            btnVolttar.Click += btnVolttar_Click;
             // 
             // lblGestaoAutores
             // 

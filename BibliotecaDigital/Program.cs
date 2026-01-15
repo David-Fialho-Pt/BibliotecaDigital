@@ -1,4 +1,5 @@
 
+using Biblioteca_Digital.DataAcess;
 using Forms;
 
 namespace BibliotecaDigital
@@ -11,9 +12,10 @@ namespace BibliotecaDigital
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
+
+            GlobalConfig.InitializeConnections();
+
             Application.Run(new FormMenuPrincipal());
         }
     }

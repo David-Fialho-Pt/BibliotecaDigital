@@ -99,6 +99,7 @@
             btnVolttar.TabIndex = 25;
             btnVolttar.Text = "Voltar";
             btnVolttar.UseVisualStyleBackColor = false;
+            btnVolttar.Click += btnVolttar_Click;
             // 
             // dgvAssociacoes
             // 

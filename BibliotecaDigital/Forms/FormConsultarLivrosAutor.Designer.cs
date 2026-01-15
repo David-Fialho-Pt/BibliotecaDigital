@@ -80,9 +80,13 @@
             btnVolttar.TabIndex = 30;
             btnVolttar.Text = "Voltar";
             btnVolttar.UseVisualStyleBackColor = false;
+            btnVolttar.Click += btnVolttar_Click;
             // 
             // dgvConsultas
             // 
+            dgvConsultas.AllowUserToAddRows = false;
+            dgvConsultas.AllowUserToDeleteRows = false;
+            dgvConsultas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvConsultas.BackgroundColor = SystemColors.ControlLightLight;
             dgvConsultas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvConsultas.Cursor = Cursors.No;
@@ -118,6 +122,7 @@
             Name = "FormConsultarLivrosAutor";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Consulta Livros/Autor";
+            Load += FormConsultarLivrosAutor_Load;
             ((System.ComponentModel.ISupportInitialize)dgvConsultas).EndInit();
             ResumeLayout(false);
             PerformLayout();

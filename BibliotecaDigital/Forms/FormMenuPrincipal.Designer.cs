@@ -60,6 +60,7 @@
             btnGerirLivros.TabIndex = 1;
             btnGerirLivros.Text = "Gerir Livros";
             btnGerirLivros.UseVisualStyleBackColor = false;
+            btnGerirLivros.Click += btnGerirLivros_Click;
             // 
             // btnGerirAutores
             // 
@@ -74,6 +75,7 @@
             btnGerirAutores.TabIndex = 2;
             btnGerirAutores.Text = "Gerir Autores";
             btnGerirAutores.UseVisualStyleBackColor = false;
+            btnGerirAutores.Click += btnGerirAutores_Click;
             // 
             // btnConsularLivrosAutor
             // 
@@ -88,6 +90,7 @@
             btnConsularLivrosAutor.TabIndex = 4;
             btnConsularLivrosAutor.Text = "Consultar Livros/Autor";
             btnConsularLivrosAutor.UseVisualStyleBackColor = false;
+            btnConsularLivrosAutor.Click += btnConsularLivrosAutor_Click;
             // 
             // btnGestaoAssociacoes
             // 
@@ -102,6 +105,7 @@
             btnGestaoAssociacoes.TabIndex = 3;
             btnGestaoAssociacoes.Text = "Associar Livros/Autor";
             btnGestaoAssociacoes.UseVisualStyleBackColor = false;
+            btnGestaoAssociacoes.Click += btnGestaoAssociacoes_Click;
             // 
             // btnSair
             // 
@@ -116,6 +120,7 @@
             btnSair.TabIndex = 5;
             btnSair.Text = "Sair";
             btnSair.UseVisualStyleBackColor = false;
+            btnSair.Click += btnSair_Click;
             // 
             // FormMenuPrincipal
             // 

@@ -130,6 +130,7 @@
             btnAdicionarLivro.TabIndex = 8;
             btnAdicionarLivro.Text = "Adicionar";
             btnAdicionarLivro.UseVisualStyleBackColor = false;
+            btnAdicionarLivro.Click += btnAdicionar_Click;
             // 
             // btnRemoverLivro
             // 
@@ -143,6 +144,7 @@
             btnRemoverLivro.TabIndex = 9;
             btnRemoverLivro.Text = "Remover";
             btnRemoverLivro.UseVisualStyleBackColor = false;
+            btnRemoverLivro.Click += btnRemoverLivro_Click;
             // 
             // btnLimparFormularioLivro
             // 
@@ -156,6 +158,7 @@
             btnLimparFormularioLivro.TabIndex = 10;
             btnLimparFormularioLivro.Text = "Limpar";
             btnLimparFormularioLivro.UseVisualStyleBackColor = false;
+            btnLimparFormularioLivro.Click += btnLimparFormularioLivro_Click;
             // 
             // btnAtualizarLivro
             // 
@@ -169,9 +172,14 @@
             btnAtualizarLivro.TabIndex = 11;
             btnAtualizarLivro.Text = "Atualizar";
             btnAtualizarLivro.UseVisualStyleBackColor = false;
+            btnAtualizarLivro.Click += btnAtualizarLivro_Click;
             // 
             // dgvLivros
             // 
+            dgvLivros.AllowDrop = true;
+            dgvLivros.AllowUserToAddRows = false;
+            dgvLivros.AllowUserToDeleteRows = false;
+            dgvLivros.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvLivros.BackgroundColor = SystemColors.ControlLightLight;
             dgvLivros.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvLivros.Cursor = Cursors.No;
@@ -181,6 +189,7 @@
             dgvLivros.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvLivros.Size = new Size(613, 221);
             dgvLivros.TabIndex = 12;
+            dgvLivros.CellClick += dgvLivros_CellClick;
             // 
             // lblGestaoLivros
             // 
@@ -204,6 +213,7 @@
             btnVolttar.TabIndex = 14;
             btnVolttar.Text = "Voltar";
             btnVolttar.UseVisualStyleBackColor = false;
+            btnVolttar.Click += btnVolttar_Click;
             // 
             // FormGestaoLivros
             // 

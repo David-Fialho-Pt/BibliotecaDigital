@@ -16,5 +16,10 @@ namespace Forms
         {
             InitializeComponent();
         }
+
+        private void btnVolttar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

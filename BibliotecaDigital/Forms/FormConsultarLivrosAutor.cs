@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Biblioteca_Digital.DataAcess;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,23 @@ namespace Forms
         public FormConsultarLivrosAutor()
         {
             InitializeComponent();
+        }
+
+        private void btnVolttar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+
+        private void FormConsultarLivrosAutor_Load(object sender, EventArgs e)
+        {
+            CarregarLivros();
+        }
+
+        private void CarregarLivros()
+        {
+            var livros = GlobalConfig.Connection.ListarLivros();
+            dgvConsultas.DataSource = livros;
         }
     }
 }
