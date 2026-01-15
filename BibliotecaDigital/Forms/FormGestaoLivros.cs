@@ -20,7 +20,7 @@ namespace Forms
         {
             InitializeComponent();
         }
-
+        //Irá carregar os livros no data grid view ao iniciar o formulário
         private void FormGestaoLivros_Load(object sender, EventArgs e)
         {
             CarregarLivros();
@@ -31,6 +31,7 @@ namespace Forms
             this.Close();
         }
 
+        //Irá limpar os campos do formulário
         private void LimparCampos()
         {
             tbTitulo.Clear();
@@ -39,7 +40,8 @@ namespace Forms
             tbIsbn.Clear();
         }
 
-
+        //Irá adicionar um novo livro ao clicar no botão adicionar, verificará se o ano é um número válido, e em caso de erro mostrará uma mensagem ao utilizador. Se o livro for adicionado com sucesso, atualizará a lista de livros e limpará os campos do formulário.
+        //Se ocorrer um erro ao adicionar o livro, mostrará uma mensagem de erro na variável ex e limpará os campos do formulário.
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
             if (!int.TryParse(tbAno.Text, out int ano))
@@ -75,12 +77,13 @@ namespace Forms
 
 
         }
-
+        //Irá limpar os campos do formulário ao clicar no botão limpar
         private void btnLimparFormularioLivro_Click(object sender, EventArgs e)
         {
             LimparCampos();
         }
 
+        //Irá preencher os campos do formulário com os dados do livro selecionado no data grid view
         private void dgvLivros_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -95,12 +98,16 @@ namespace Forms
                 tbIsbn.Text = row.Cells["ISBN"].Value.ToString();
             }
         }
+
+        //Irá carregar a lista de livros no data grid view
         private void CarregarLivros()
         {
             var livros = GlobalConfig.Connection.ListarLivros();
             dgvLivros.DataSource = livros;
         }
 
+
+        //Irá remover o livro selecionado ao clicar no botão remover, após confirmar a ação com o utilizador. Se o livro for removido com sucesso, atualizará a lista de livros e limpará os campos do formulário.
         private void btnRemoverLivro_Click(object sender, EventArgs e)
         {
 
@@ -129,6 +136,8 @@ namespace Forms
 
         }
 
+        //Irá atualizar o livro selecionado ao clicar no botão atualizar, verificará se o ano é um número válido, e em caso de erro mostrará uma mensagem ao utilizador. Se o livro for atualizado com sucesso, atualizará a lista de livros e limpará os campos do formulário.
+        //Se ocorrer um erro ao atualizar o livro, mostrará uma mensagem de erro na variável ex.
         private void btnAtualizarLivro_Click(object sender, EventArgs e)
         {
             if (idLivroSelecionado == 0)
