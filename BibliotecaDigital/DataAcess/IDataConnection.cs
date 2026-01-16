@@ -11,11 +11,12 @@ namespace Biblioteca_Digital.DataAcess
     {
         void CriarLivro(Livro livro);
         List<Livro> ListarLivros();
-
         void RemoverLivro(int idLivro);
-
         void AtualizarLivro(Livro livro);
-
+        void CriarAutor(Autor autor);
+        List<Autor> ListarAutores();
+        void AtualizarAutor(Autor autor);
+        void RemoverAutor(int idAutor);
 
 
     }

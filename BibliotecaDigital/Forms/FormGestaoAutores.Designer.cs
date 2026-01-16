@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            tbEditora = new TextBox();
-            tbAno = new TextBox();
-            tbTitulo = new TextBox();
+            tbAnonascimento = new TextBox();
+            tbNacionalidade = new TextBox();
+            tbNome = new TextBox();
             lblAnoNascimento = new Label();
             lblNacionalidade = new Label();
             lbNomeAutor = new Label();
@@ -44,29 +44,29 @@
             ((System.ComponentModel.ISupportInitialize)dgvAutores).BeginInit();
             SuspendLayout();
             // 
-            // tbEditora
+            // tbAnonascimento
             // 
-            tbEditora.Cursor = Cursors.IBeam;
-            tbEditora.Location = new Point(233, 189);
-            tbEditora.Name = "tbEditora";
-            tbEditora.Size = new Size(100, 23);
-            tbEditora.TabIndex = 12;
+            tbAnonascimento.Cursor = Cursors.IBeam;
+            tbAnonascimento.Location = new Point(233, 189);
+            tbAnonascimento.Name = "tbAnonascimento";
+            tbAnonascimento.Size = new Size(100, 23);
+            tbAnonascimento.TabIndex = 12;
             // 
-            // tbAno
+            // tbNacionalidade
             // 
-            tbAno.Cursor = Cursors.IBeam;
-            tbAno.Location = new Point(233, 146);
-            tbAno.Name = "tbAno";
-            tbAno.Size = new Size(100, 23);
-            tbAno.TabIndex = 11;
+            tbNacionalidade.Cursor = Cursors.IBeam;
+            tbNacionalidade.Location = new Point(233, 146);
+            tbNacionalidade.Name = "tbNacionalidade";
+            tbNacionalidade.Size = new Size(100, 23);
+            tbNacionalidade.TabIndex = 11;
             // 
-            // tbTitulo
+            // tbNome
             // 
-            tbTitulo.Cursor = Cursors.IBeam;
-            tbTitulo.Location = new Point(233, 103);
-            tbTitulo.Name = "tbTitulo";
-            tbTitulo.Size = new Size(100, 23);
-            tbTitulo.TabIndex = 10;
+            tbNome.Cursor = Cursors.IBeam;
+            tbNome.Location = new Point(233, 103);
+            tbNome.Name = "tbNome";
+            tbNome.Size = new Size(100, 23);
+            tbNome.TabIndex = 10;
             // 
             // lblAnoNascimento
             // 
@@ -110,6 +110,7 @@
             btnAtualizarAutor.TabIndex = 16;
             btnAtualizarAutor.Text = "Atualizar";
             btnAtualizarAutor.UseVisualStyleBackColor = false;
+            btnAtualizarAutor.Click += btnAtualizarAutor_Click;
             // 
             // btnLimparFormularioAutor
             // 
@@ -123,6 +124,7 @@
             btnLimparFormularioAutor.TabIndex = 15;
             btnLimparFormularioAutor.Text = "Limpar";
             btnLimparFormularioAutor.UseVisualStyleBackColor = false;
+            btnLimparFormularioAutor.Click += btnLimparFormularioAutor_Click;
             // 
             // btnRemoverAutor
             // 
@@ -136,6 +138,7 @@
             btnRemoverAutor.TabIndex = 14;
             btnRemoverAutor.Text = "Remover";
             btnRemoverAutor.UseVisualStyleBackColor = false;
+            btnRemoverAutor.Click += btnRemoverAutor_Click;
             // 
             // btnAdicionarAutor
             // 
@@ -149,18 +152,23 @@
             btnAdicionarAutor.TabIndex = 13;
             btnAdicionarAutor.Text = "Adicionar";
             btnAdicionarAutor.UseVisualStyleBackColor = false;
+            btnAdicionarAutor.Click += btnAdicionarAutor_Click;
             // 
             // dgvAutores
             // 
+            dgvAutores.AllowDrop = true;
+            dgvAutores.AllowUserToAddRows = false;
+            dgvAutores.AllowUserToDeleteRows = false;
+            dgvAutores.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvAutores.BackgroundColor = SystemColors.ControlLightLight;
             dgvAutores.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvAutores.Cursor = Cursors.No;
             dgvAutores.Location = new Point(77, 350);
             dgvAutores.Name = "dgvAutores";
             dgvAutores.ReadOnly = true;
             dgvAutores.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvAutores.Size = new Size(613, 221);
             dgvAutores.TabIndex = 17;
+            dgvAutores.CellClick += dgvAutores_CellClick;
             // 
             // btnVolttar
             // 
@@ -199,15 +207,16 @@
             Controls.Add(btnLimparFormularioAutor);
             Controls.Add(btnRemoverAutor);
             Controls.Add(btnAdicionarAutor);
-            Controls.Add(tbEditora);
-            Controls.Add(tbAno);
-            Controls.Add(tbTitulo);
+            Controls.Add(tbAnonascimento);
+            Controls.Add(tbNacionalidade);
+            Controls.Add(tbNome);
             Controls.Add(lblAnoNascimento);
             Controls.Add(lblNacionalidade);
             Controls.Add(lbNomeAutor);
             Name = "FormGestaoAutores";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Gestão Autores";
+            Load += FormGestaoAutores_Load;
             ((System.ComponentModel.ISupportInitialize)dgvAutores).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -215,9 +224,9 @@
 
         #endregion
 
-        private TextBox tbEditora;
-        private TextBox tbAno;
-        private TextBox tbTitulo;
+        private TextBox tbAnonascimento;
+        private TextBox tbNacionalidade;
+        private TextBox tbNome;
         private Label lblAnoNascimento;
         private Label lblNacionalidade;
         private Label lbNomeAutor;

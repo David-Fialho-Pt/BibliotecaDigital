@@ -67,5 +67,67 @@ namespace Biblioteca_Digital.DataAcess
 
 
 
+        public void CriarAutor(Autor autor)
+        {
+            using (IDbConnection connection =
+                   new SqlConnection(GlobalConfig.CnnString("BibliotecaDigital")))
+            {
+                var p = new DynamicParameters();
+                p.Add("@Nome", autor.Nome);
+                p.Add("@Nacionalidade", autor.Nacionalidade);
+                p.Add("@AnoNascimento", autor.AnoNascimento);
+
+                connection.Execute("dbo.spAdicionarAutor", p, commandType: CommandType.StoredProcedure);
+            }
+        }
+
+
+
+        public List<Autor> ListarAutores()
+        {
+            using (IDbConnection connection =
+                   new SqlConnection(GlobalConfig.CnnString("BibliotecaDigital")))
+            {
+                return connection.Query<Autor>("spListarAutores",
+                    commandType: CommandType.StoredProcedure).ToList();
+            }
+        }
+
+
+        public void RemoverAutor(int idAutor)
+        {
+            using (IDbConnection connection =
+                   new SqlConnection(GlobalConfig.CnnString("BibliotecaDigital")))
+            {
+                var p = new DynamicParameters();
+                p.Add("@IdAutor", idAutor);
+
+                connection.Execute("spRemoverAutor", p, commandType: CommandType.StoredProcedure);
+            }
+        }
+
+
+        public void AtualizarAutor(Autor autor)
+        {
+            using (IDbConnection connection =
+                   new SqlConnection(GlobalConfig.CnnString("BibliotecaDigital")))
+            {
+                var p = new DynamicParameters();
+                p.Add("@IdAutor", autor.IdAutor);
+                p.Add("@Nome", autor.Nome);
+                p.Add("@Nacionalidade", autor.Nacionalidade);
+                p.Add("@AnoNascimento", autor.AnoNascimento);
+
+                connection.Execute("dbo.spAtualizarAutor", p, commandType: CommandType.StoredProcedure);
+            }
+        }
+
+
+
+
+
+
+
+
     }
 }

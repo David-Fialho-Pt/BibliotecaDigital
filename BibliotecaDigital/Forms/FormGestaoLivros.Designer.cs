@@ -182,7 +182,6 @@
             dgvLivros.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvLivros.BackgroundColor = SystemColors.ControlLightLight;
             dgvLivros.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvLivros.Cursor = Cursors.No;
             dgvLivros.Location = new Point(77, 350);
             dgvLivros.Name = "dgvLivros";
             dgvLivros.ReadOnly = true;
