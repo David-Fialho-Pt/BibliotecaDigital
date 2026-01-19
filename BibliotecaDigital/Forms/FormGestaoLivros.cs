@@ -138,13 +138,13 @@ namespace Forms
                 return;
             }
 
-            DialogResult r = MessageBox.Show(
+            DialogResult resposta = MessageBox.Show(
                 "Tem a certeza que quer remover este livro?",
                 "Confirmar",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
 
-            if (r == DialogResult.Yes)
+            if (resposta == DialogResult.Yes)
             {
                 GlobalConfig.Connection.RemoverLivro(idLivroSelecionado);
                 MessageBox.Show("Livro removido com sucesso!");
