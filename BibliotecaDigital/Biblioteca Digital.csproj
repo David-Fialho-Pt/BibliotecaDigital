@@ -9,7 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="BaseDados\" />
+    <Compile Remove="BaseDados\**" />
+    <EmbeddedResource Remove="BaseDados\**" />
+    <None Remove="BaseDados\**" />
   </ItemGroup>
 
   <ItemGroup>
