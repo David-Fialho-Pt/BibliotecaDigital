@@ -17,6 +17,12 @@ namespace Biblioteca_Digital.DataAcess
         List<Autor> ListarAutores();
         void AtualizarAutor(Autor autor);
         void RemoverAutor(int idAutor);
+        void AssociarLivroAutor(int idLivro, int idAutor);
+        List<LivroAutor> ListarAssociacoes();
+        void RemoverLivroAutor(int idLivro, int idAutor);
+        List<Livro> ListarLivrosPorAutor(int idAutor);
+
+
 
 
     }

@@ -26,13 +26,51 @@ namespace Forms
 
         private void FormConsultarLivrosAutor_Load(object sender, EventArgs e)
         {
-            CarregarLivros();
+            CarregarAutores();
         }
 
-        private void CarregarLivros()
+        private void CarregarAutores()
         {
-            var livros = GlobalConfig.Connection.ListarLivros();
-            dgvConsultas.DataSource = livros;
+            var autores = GlobalConfig.Connection.ListarAutores();
+            cbAutor.DataSource = autores;
+            cbAutor.DisplayMember = "Nome";
+            cbAutor.ValueMember = "IdAutor";
         }
+
+        private void cbAutores_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbAutor.SelectedValue == null)
+                return;
+
+            int idAutor = (int)cbAutor.SelectedValue;
+            CarregarLivros(idAutor);
+        }
+
+        private void CarregarLivros(int idAutor)
+        {
+            var livros = GlobalConfig.Connection.ListarLivrosPorAutor(idAutor);
+            dgvConsultas.DataSource = livros;
+
+            dgvConsultas.Columns["IdLivro"].Visible = false;
+            dgvConsultas.Columns["AnoPublicacao"].Visible = true;
+            dgvConsultas.Columns["Editora"].Visible = true;
+            dgvConsultas.Columns["ISBN"].Visible = true;
+
+            dgvConsultas.Columns["Titulo"].HeaderText = "Livro";
+        }
+
+        private void btnConsultar_Click(object sender, EventArgs e)
+        {
+            if (cbAutor.SelectedItem == null)
+            {
+                MessageBox.Show("Selecione um autor.");
+                return;
+            }
+
+            int idAutor = (int)cbAutor.SelectedValue;
+            CarregarLivros(idAutor);
+        }
+
+
     }
 }

@@ -12,7 +12,7 @@ namespace Biblioteca_Digital.DataAcess
 {
     public class SQLConnector : IDataConnection
     {
-        
+
 
         public void CriarLivro(Livro livro)
         {
@@ -121,6 +121,63 @@ namespace Biblioteca_Digital.DataAcess
                 connection.Execute("dbo.spAtualizarAutor", p, commandType: CommandType.StoredProcedure);
             }
         }
+
+        public void AssociarLivroAutor(int idLivro, int idAutor)
+        {
+            using (IDbConnection connection =
+                new SqlConnection(GlobalConfig.CnnString("BibliotecaDigital")))
+            {
+                var p = new DynamicParameters();
+                p.Add("@IdLivro", idLivro);
+                p.Add("@IdAutor", idAutor);
+
+                connection.Execute("spAssociarLivroAutor", p,
+                    commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        public List<LivroAutor> ListarAssociacoes()
+        {
+            using (IDbConnection connection =
+                new SqlConnection(GlobalConfig.CnnString("BibliotecaDigital")))
+            {
+                return connection.Query<LivroAutor>(
+                    "spListarAssociacoes",
+                    commandType: CommandType.StoredProcedure).ToList();
+            }
+        }
+
+        public void RemoverLivroAutor(int idLivro, int idAutor)
+        {
+            using (IDbConnection connection =
+                new SqlConnection(GlobalConfig.CnnString("BibliotecaDigital")))
+            {
+                var p = new DynamicParameters();
+                p.Add("@IdLivro", idLivro);
+                p.Add("@IdAutor", idAutor);
+
+                connection.Execute("spRemoverLivroAutor", p,
+                    commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        public List<Livro> ListarLivrosPorAutor(int idAutor)
+        {
+            using (IDbConnection connection =
+                new SqlConnection(GlobalConfig.CnnString("BibliotecaDigital")))
+            {
+                var p = new DynamicParameters();
+                p.Add("@IdAutor", idAutor);
+
+                return connection.Query<Livro>(
+                    "spListarLivrosPorAutor",
+                    p,
+                    commandType: CommandType.StoredProcedure).ToList();
+            }
+        }
+
+
+
 
 
 

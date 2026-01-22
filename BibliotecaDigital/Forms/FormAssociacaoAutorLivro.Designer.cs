@@ -103,6 +103,9 @@
             // 
             // dgvAssociacoes
             // 
+            dgvAssociacoes.AllowUserToAddRows = false;
+            dgvAssociacoes.AllowUserToDeleteRows = false;
+            dgvAssociacoes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvAssociacoes.BackgroundColor = SystemColors.ControlLightLight;
             dgvAssociacoes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvAssociacoes.Cursor = Cursors.No;
@@ -112,6 +115,7 @@
             dgvAssociacoes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvAssociacoes.Size = new Size(613, 221);
             dgvAssociacoes.TabIndex = 26;
+            dgvAssociacoes.CellClick += dgvAssociacoes_CellClick;
             // 
             // button1
             // 
@@ -134,6 +138,7 @@
             btnDesassociar.TabIndex = 29;
             btnDesassociar.Text = "Desassociar";
             btnDesassociar.UseVisualStyleBackColor = false;
+            btnDesassociar.Click += btnDesassociar_Click;
             // 
             // btnAssociar
             // 
@@ -147,6 +152,7 @@
             btnAssociar.TabIndex = 28;
             btnAssociar.Text = "Associar";
             btnAssociar.UseVisualStyleBackColor = false;
+            btnAssociar.Click += btnAssociar_Click;
             // 
             // FormAssociacaoAutorLivro
             // 
@@ -167,6 +173,7 @@
             Name = "FormAssociacaoAutorLivro";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Associar Livro/Autor";
+            Load += FormAssociacaoAutorLivro_Load;
             ((System.ComponentModel.ISupportInitialize)dgvAssociacoes).EndInit();
             ResumeLayout(false);
             PerformLayout();
