@@ -176,6 +176,23 @@ namespace Biblioteca_Digital.DataAcess
             }
         }
 
+        public bool LivroExiste(string isbn)
+        {
+            using (IDbConnection connection =
+                   new SqlConnection(GlobalConfig.CnnString("BibliotecaDigital")))
+            {
+                var p = new DynamicParameters();
+                p.Add("@ISBN", isbn);
+
+                int total = connection.ExecuteScalar<int>(
+                    "spLivroExistePorISBN",
+                    p,
+                    commandType: CommandType.StoredProcedure);
+
+                return total > 0;
+            }
+        }
+
 
 
 

@@ -22,5 +22,7 @@ namespace Biblioteca_Digital.DataAcess
         void RemoverLivroAutor(int idLivro, int idAutor);
         List<Livro> ListarLivrosPorAutor(int idAutor);
 
+        bool LivroExiste(string isbn);
+
     }
 }

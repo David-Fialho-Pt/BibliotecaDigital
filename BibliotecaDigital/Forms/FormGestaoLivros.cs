@@ -42,7 +42,15 @@ namespace Forms
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
-           
+
+            if (GlobalConfig.Connection.LivroExiste(tbIsbn.Text))
+            {
+                MessageBox.Show("Já existe um livro com esse ISBN.");
+                tbIsbn.Focus();
+                return;
+            }
+
+
             if (string.IsNullOrWhiteSpace(tbTitulo.Text) ||
                 string.IsNullOrWhiteSpace(tbAno.Text) ||
                 string.IsNullOrWhiteSpace(tbEditora.Text) ||
