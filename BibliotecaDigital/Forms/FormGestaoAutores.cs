@@ -49,6 +49,20 @@ namespace Forms
                 MessageBox.Show("Preencha todos os campos.");
                 return;
             }
+            if (!tbNome.Text.All(char.IsLetter))
+            {
+                MessageBox.Show("O nome só pode conter letras.");
+                tbNome.Focus();
+                return;
+            }
+
+            if (!tbNacionalidade.Text.All(char.IsLetter))
+            {
+                MessageBox.Show("A nacionalidade só pode conter letras.");
+                tbNacionalidade.Focus();
+                return;
+            }
+
 
             int anoAtual = DateTime.Now.Year;
 
@@ -156,6 +170,20 @@ namespace Forms
                 MessageBox.Show("Preencha todos os campos.");
                 return;
             }
+            if (!tbNome.Text.All(char.IsLetter))
+            {
+                MessageBox.Show("O nome só pode conter letras.");
+                tbNome.Focus();
+                return;
+            }
+
+            if (!tbNacionalidade.Text.All(char.IsLetter))
+            {
+                MessageBox.Show("A nacionalidade só pode conter letras.");
+                tbNacionalidade.Focus();
+                return;
+            }
+
 
 
             int anoAtual = DateTime.Now.Year;

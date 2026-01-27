@@ -14,7 +14,7 @@ namespace BibliotecaDigital
         {
             ApplicationConfiguration.Initialize();
 
-            GlobalConfig.InitializeConnections();
+            GlobalConfig.InitializeConnections(DatabaseType.Txt);
 
             Application.Run(new FormMenuPrincipal());
         }

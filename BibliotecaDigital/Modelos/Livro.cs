@@ -14,6 +14,7 @@ namespace Biblioteca_Digital.Modelos
             public int AnoPublicacao { get; set; }
             public string Editora { get; set; }
             public string ISBN { get; set; }
+
         
 
        }
