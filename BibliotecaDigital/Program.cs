@@ -10,9 +10,7 @@ namespace BibliotecaDigital
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-
-            GlobalConfig.InitializeConnections(DatabaseType.Sql);
-
+            GlobalConfig.InitializeConnections(DatabaseType.Txt);
             Application.Run(new FormMenuPrincipal());
         }
     }

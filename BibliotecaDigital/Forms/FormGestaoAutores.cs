@@ -66,9 +66,15 @@ namespace Forms
 
             int anoAtual = DateTime.Now.Year;
 
-            if (!int.TryParse(tbAnonascimento.Text, out int ano) ||
-                tbAnonascimento.Text.Length != 4 ||
-                ano < 1400 || ano > anoAtual)
+            if (!int.TryParse(tbAnonascimento.Text, out int ano))
+            {
+                MessageBox.Show($"O campo só pode conter números.");
+                tbAnonascimento.Clear();
+                tbAnonascimento.Focus();
+                return;
+            }
+
+            if ( tbAnonascimento.Text.Length != 4 ||ano < 1400 || ano > anoAtual)
             {
                 MessageBox.Show($"O ano de nascimento deve ter 4 números e estar entre 1400 e {anoAtual}.");
                 tbAnonascimento.Clear();
@@ -178,9 +184,14 @@ namespace Forms
             }
 
             int anoAtual = DateTime.Now.Year;
-            if (!int.TryParse(tbAnonascimento.Text, out int ano) ||
-               tbAnonascimento.Text.Length != 4 ||
-               ano < 1400 || ano > anoAtual)
+            if (!int.TryParse(tbAnonascimento.Text, out int ano))
+            {
+                MessageBox.Show($"O campo só pode conter números.");
+                tbAnonascimento.Clear();
+                tbAnonascimento.Focus();
+                return;
+            }
+            if (tbAnonascimento.Text.Length != 4 || ano < 1400 || ano > anoAtual)
             {
                 MessageBox.Show($"O ano de nascimento deve ter 4 números e estar entre 1400 e {anoAtual}.");
                 tbAnonascimento.Clear();

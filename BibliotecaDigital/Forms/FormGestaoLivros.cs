@@ -48,8 +48,6 @@ namespace Forms
                 tbIsbn.Focus();
                 return;
             }
-
-
             if (string.IsNullOrWhiteSpace(tbTitulo.Text) ||
                 string.IsNullOrWhiteSpace(tbAno.Text) ||
                 string.IsNullOrWhiteSpace(tbEditora.Text) ||
@@ -62,9 +60,15 @@ namespace Forms
             
             int anoAtual = DateTime.Now.Year;
 
-            if (!int.TryParse(tbAno.Text, out int ano) ||
-                tbAno.Text.Length != 4 ||
-                ano < 1500 || ano > anoAtual)
+            if (!int.TryParse(tbAno.Text, out int ano))
+            {
+                MessageBox.Show($"O campo só pode conter números.");
+                tbAno.Clear();
+                tbAno.Focus();
+                return;
+            }
+
+            if (tbAno.Text.Length != 4 || ano < 1500 || ano > anoAtual)
             {
                 MessageBox.Show($"O ano de publicação deve ter 4 números e estar entre 1500 e {anoAtual}.");
                 tbAno.Clear();
@@ -72,9 +76,18 @@ namespace Forms
                 return;
             }
 
-            if (tbIsbn.Text.Length != 13 || !tbIsbn.Text.All(char.IsDigit))
+            if (tbIsbn.Text.Length != 13 )
             {
                 MessageBox.Show("O ISBN deve conter exatamente 13 números.");
+                tbIsbn.Clear();
+                tbIsbn.Focus();
+                return;
+            }
+
+
+            if (!tbIsbn.Text.All(char.IsDigit))
+            {
+                MessageBox.Show($"O campo só pode conter números.");
                 tbIsbn.Clear();
                 tbIsbn.Focus();
                 return;
@@ -174,9 +187,15 @@ namespace Forms
             }
 
             int anoAtual = DateTime.Now.Year;
-            if (!int.TryParse(tbAno.Text, out int ano) ||
-               tbAno.Text.Length != 4 ||
-               ano < 1500 || ano > anoAtual)
+
+            if (!int.TryParse(tbAno.Text, out int ano))
+            {
+                MessageBox.Show($"O campo só pode conter números.");
+                tbAno.Clear();
+                tbAno.Focus();
+                return;
+            }
+            if (tbAno.Text.Length != 4 || ano < 1500 || ano > anoAtual)
             {
                 MessageBox.Show($"O ano de publicação deve ter 4 números e estar entre 1500 e {anoAtual}.");
                 tbAno.Clear();
