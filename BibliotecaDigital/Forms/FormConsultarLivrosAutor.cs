@@ -23,7 +23,6 @@ namespace Forms
             this.Close();
         }
 
-
         private void FormConsultarLivrosAutor_Load(object sender, EventArgs e)
         {
             CarregarAutores();
@@ -40,8 +39,7 @@ namespace Forms
         private void cbAutores_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cbAutor.SelectedValue == null)
-                return;
-
+            return;
             int idAutor = (int)cbAutor.SelectedValue;
             CarregarLivros(idAutor);
         }
@@ -50,12 +48,10 @@ namespace Forms
         {
             var livros = GlobalConfig.Connection.ListarLivrosPorAutor(idAutor);
             dgvConsultas.DataSource = livros;
-
             dgvConsultas.Columns["IdLivro"].Visible = false;
             dgvConsultas.Columns["AnoPublicacao"].Visible = true;
             dgvConsultas.Columns["Editora"].Visible = true;
             dgvConsultas.Columns["ISBN"].Visible = true;
-
             dgvConsultas.Columns["Titulo"].HeaderText = "Livro";
         }
 
@@ -66,11 +62,8 @@ namespace Forms
                 MessageBox.Show("Selecione um autor.");
                 return;
             }
-
             int idAutor = (int)cbAutor.SelectedValue;
             CarregarLivros(idAutor);
         }
-
-
     }
 }

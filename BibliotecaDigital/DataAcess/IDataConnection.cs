@@ -19,9 +19,8 @@ namespace Biblioteca_Digital.DataAcess
         void RemoverAutor(int idAutor);
         void AssociarLivroAutor(int idLivro, int idAutor);
         List<LivroAutor> ListarAssociacoes();
-        void RemoverLivroAutor(int idLivro, int idAutor);
+        void DesassociarLivroAutor(int idLivro, int idAutor);
         List<Livro> ListarLivrosPorAutor(int idAutor);
-
         bool LivroExiste(string isbn);
 
     }

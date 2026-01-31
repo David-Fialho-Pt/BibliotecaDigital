@@ -10,26 +10,25 @@ namespace Biblioteca_Digital.DataAcess
    
         public static class GlobalConfig
         {
-            public static IDataConnection Connection { get; private set; }
+             public static IDataConnection Connection { get; private set; }
 
-        public static void InitializeConnections(DatabaseType db)
-        {
-            if (db == DatabaseType.Sql)
+             public static void InitializeConnections(DatabaseType db)
+             {
+                    if (db == DatabaseType.Sql)
+                    {
+                        SQLConnector sql = new SQLConnector();
+                        Connection = sql;
+                    }
+                    else if (db == DatabaseType.Txt)
+                    {
+                        TextConnector txt = new TextConnector();
+                        Connection = txt;
+                    }
+             }
+
+            public static string CnnString(string name)
             {
-                SQLConnector sql = new SQLConnector();
-                Connection = sql;
-            }
-            else if (db == DatabaseType.Txt)
-            {
-                TextConnector txt = new TextConnector();
-                Connection = txt;
+                   return ConfigurationManager.ConnectionStrings[name].ConnectionString;
             }
         }
-
-        public static string CnnString(string name)
-            {
-                return ConfigurationManager.ConnectionStrings[name].ConnectionString;
-            }
-        }
-    
 }

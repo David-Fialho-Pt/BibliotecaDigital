@@ -15,58 +15,93 @@ namespace Biblioteca_Digital.DataAcess
             return $"{ConfigurationManager.AppSettings["filePath"]}\\{fileName}";
         }
 
-        public static List<string> CarregarFicheiro(this string file)
+        public static List<string> CarregarFicheiro(this string ficheiro)
         {
-            if (!File.Exists(file))
+            if (!File.Exists(ficheiro))
             {
                 return new List<string>();
             }
-
-            return File.ReadAllLines(file).ToList();
+            return File.ReadAllLines(ficheiro).ToList();
         }
 
-        public static List<Livro> ConverterParaModeloLivro(this List<string> lines)
+        public static List<Livro> ConverterParaModeloLivro(this List<string> linhas)
         {
             List<Livro> output = new List<Livro>();
-
-            foreach (string line in lines)
+            foreach (string linha in linhas)
             {
-
-                if (string.IsNullOrWhiteSpace(line))
-                {
-                    continue;
-                }
-                string[] cols = line.Split(';');
-
-
-                if (cols.Length != 5)
-                {
-                    continue;
-                }
-
+                string[] cols = linha.Split(';');
                 Livro livro = new Livro();
                 livro.IdLivro = int.Parse(cols[0]);
                 livro.Titulo = cols[1];
                 livro.AnoPublicacao = int.Parse(cols[2]);
                 livro.Editora = cols[3];
                 livro.ISBN = cols[4];
-
                 output.Add(livro);
             }
-
             return output;
         }
 
-        public static void SalvarLivro(this List<Livro> livros, string fileName)
+        public static List<Autor> ConverterParaModeloAutor(this List<string> linhas)
         {
-            List<string> lines = new List<string>();
-
-            foreach (Livro l in livros)
+            List<Autor> output = new List<Autor>();
+            foreach (string linha in linhas)
             {
-                lines.Add($"{l.IdLivro};{l.Titulo};{l.AnoPublicacao};{l.Editora};{l.ISBN}");
+                string[] cols = linha.Split(';');
+                Autor autor = new Autor();
+                autor.IdAutor = int.Parse(cols[0]);
+                autor.Nome = cols[1];
+                autor.Nacionalidade = cols[2];
+                autor.AnoNascimento = int.Parse(cols[3]);
+                output.Add(autor);
             }
+            return output;
+        }
 
-            File.WriteAllLines(fileName.FullPath(), lines);
+        public static List<LivroAutor> ConverterParaModeloLivroAutor(this List<string> linhas)
+        {
+            List<LivroAutor> output = new List<LivroAutor>();
+            foreach (string linha in linhas)
+            {
+                string[] cols = linha.Split(';');
+                LivroAutor livroautor = new LivroAutor();
+                livroautor.IdLivro = int.Parse(cols[0]);
+                livroautor.IdAutor = int.Parse(cols[1]);
+                output.Add(livroautor);
+            }
+            return output;
+        }
+
+        public static void SalvarLivro(this List<Livro> livros, string ficheiro)
+        {
+            List<string> linhas = new List<string>();
+
+            foreach (Livro livro in livros)
+            {
+                linhas.Add($"{livro.IdLivro};{livro.Titulo};{livro.AnoPublicacao};{livro.Editora};{livro.ISBN}");
+            }
+            File.WriteAllLines(ficheiro.FullPath(), linhas);
+        }
+
+        public static void SalvarAutor(this List<Autor> autores, string ficheiro)
+        {
+            List<string> linhas = new List<string>();
+
+            foreach (Autor autor in autores)
+            {
+                linhas.Add($"{autor.IdAutor};{autor.Nome};{autor.Nacionalidade};{autor.AnoNascimento}");
+            }
+            File.WriteAllLines(ficheiro.FullPath(), linhas);
+        }
+
+        public static void SalvarLivroAutor(this List<LivroAutor> associacoes, string ficheiro)
+        {
+            List<string> linhas = new List<string>();
+
+            foreach (LivroAutor livroautor in associacoes)
+            {
+                linhas.Add($"{livroautor.IdLivro};{livroautor.IdAutor}");
+            }
+            File.WriteAllLines(ficheiro.FullPath(), linhas);
         }
     }
 }

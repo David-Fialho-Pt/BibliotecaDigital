@@ -13,6 +13,10 @@ namespace Forms
 {
     public partial class FormAssociacaoAutorLivro : Form
     {
+
+        int idLivroSelecionado = 0;
+        int idAutorSelecionado = 0;
+       
         public FormAssociacaoAutorLivro()
         {
             InitializeComponent();
@@ -50,12 +54,9 @@ namespace Forms
         {
             var associacoes = GlobalConfig.Connection.ListarAssociacoes();
             dgvAssociacoes.DataSource = associacoes;
-
-           
-            dgvAssociacoes.Columns["Nome"].HeaderText = "Autor";
-            dgvAssociacoes.Columns["Titulo"].HeaderText = "Livro";
+            dgvAssociacoes.Columns["Nome"].Visible = false;
+            dgvAssociacoes.Columns["Titulo"].Visible = false;
         }
-
 
         private void btnAssociar_Click(object sender, EventArgs e)
         {
@@ -64,10 +65,8 @@ namespace Forms
                 MessageBox.Show("Selecione um livro e um autor.");
                 return;
             }
-
             int idLivro = (int)cbLivros.SelectedValue;
             int idAutor = (int)cbAutores.SelectedValue;
-
             try
             {
                 GlobalConfig.Connection.AssociarLivroAutor(idLivro, idAutor);
@@ -80,19 +79,13 @@ namespace Forms
             }
         }
 
-        int idLivroSelecionado = 0;
-        int idAutorSelecionado = 0;
-
         private void dgvAssociacoes_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = dgvAssociacoes.Rows[e.RowIndex];
-
                 idLivroSelecionado = Convert.ToInt32(row.Cells["IdLivro"].Value);
                 idAutorSelecionado = Convert.ToInt32(row.Cells["IdAutor"].Value);
-
-              
                 cbLivros.SelectedValue = idLivroSelecionado;
                 cbAutores.SelectedValue = idAutorSelecionado;
             }
@@ -106,17 +99,12 @@ namespace Forms
                 return;
             }
 
-            GlobalConfig.Connection.RemoverLivroAutor(idLivroSelecionado, idAutorSelecionado);
-
+            GlobalConfig.Connection.DesassociarLivroAutor(idLivroSelecionado, idAutorSelecionado);
             MessageBox.Show("Associação removida com sucesso!");
-
             CarregarAssociacoes();
-
             idLivroSelecionado = 0;
             idAutorSelecionado = 0;
-
         }
     }
-
 }
 

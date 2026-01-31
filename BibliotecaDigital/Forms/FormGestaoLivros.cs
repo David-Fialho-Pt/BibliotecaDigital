@@ -31,7 +31,6 @@ namespace Forms
             this.Close();
         }
 
-        
         private void LimparCampos()
         {
             tbTitulo.Clear();
@@ -81,7 +80,6 @@ namespace Forms
                 return;
             }
 
-
             try
             {
                 Livro livro = new Livro
@@ -106,12 +104,10 @@ namespace Forms
             }
         }
 
-
         private void btnLimparFormularioLivro_Click(object sender, EventArgs e)
         {
             LimparCampos();
         }
-
       
         private void dgvLivros_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -128,15 +124,12 @@ namespace Forms
             }
         }
 
-      
         private void CarregarLivros()
         {
             var livros = GlobalConfig.Connection.ListarLivros();
             dgvLivros.DataSource = livros;
         }
 
-
-      
         private void btnRemoverLivro_Click(object sender, EventArgs e)
         {
 
@@ -160,12 +153,9 @@ namespace Forms
                 CarregarLivros();
                 LimparCampos();
                 idLivroSelecionado = 0;
-
             }
-
         }
 
-      
         private void btnAtualizarLivro_Click(object sender, EventArgs e)
         {
             if (idLivroSelecionado == 0)
@@ -226,6 +216,5 @@ namespace Forms
                 MessageBox.Show("Erro ao atualizar livro: " + ex.Message);
             }
         }
-
     }
 }

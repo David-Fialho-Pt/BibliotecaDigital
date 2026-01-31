@@ -17,6 +17,7 @@ namespace Forms
     {
 
         int idAutorSelecionado = 0;
+
         public FormGestaoAutores()
         {
             InitializeComponent();
@@ -63,21 +64,17 @@ namespace Forms
                 return;
             }
 
-
             int anoAtual = DateTime.Now.Year;
 
             if (!int.TryParse(tbAnonascimento.Text, out int ano) ||
                 tbAnonascimento.Text.Length != 4 ||
-                ano < 1900 || ano > anoAtual)
+                ano < 1400 || ano > anoAtual)
             {
-                MessageBox.Show($"O ano de nascimento deve ter 4 números e estar entre 1900 e {anoAtual}.");
+                MessageBox.Show($"O ano de nascimento deve ter 4 números e estar entre 1400 e {anoAtual}.");
                 tbAnonascimento.Clear();
                 tbAnonascimento.Focus();
                 return;
             }
-
-
-
 
             try
             {
@@ -102,8 +99,6 @@ namespace Forms
             }
         }
 
-
-
         private void btnLimparFormularioAutor_Click(object sender, EventArgs e)
         {
             LimparCampos();
@@ -122,13 +117,11 @@ namespace Forms
             }
         }
 
-
         private void CarregarAutores()
         {
             var autores = GlobalConfig.Connection.ListarAutores();
             dgvAutores.DataSource = autores;
         }
-
 
         private void btnRemoverAutor_Click(object sender, EventArgs e)
         {
@@ -184,14 +177,12 @@ namespace Forms
                 return;
             }
 
-
-
             int anoAtual = DateTime.Now.Year;
             if (!int.TryParse(tbAnonascimento.Text, out int ano) ||
                tbAnonascimento.Text.Length != 4 ||
-               ano < 1500 || ano > anoAtual)
+               ano < 1400 || ano > anoAtual)
             {
-                MessageBox.Show($"O ano de nascimento deve ter 4 números e estar entre 1900 e {anoAtual}.");
+                MessageBox.Show($"O ano de nascimento deve ter 4 números e estar entre 1400 e {anoAtual}.");
                 tbAnonascimento.Clear();
                 tbAnonascimento.Focus();
                 return;
@@ -222,9 +213,5 @@ namespace Forms
         }
 
     }
-
-
-
-
 }
 
