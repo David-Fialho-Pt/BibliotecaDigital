@@ -15,6 +15,7 @@ namespace Forms
     public partial class FormGestaoLivros : Form
     {
         int idLivroSelecionado = 0;
+        string isbnOriginal = "";
 
         public FormGestaoLivros()
         {
@@ -134,6 +135,8 @@ namespace Forms
                 tbAno.Text = row.Cells["AnoPublicacao"].Value.ToString();
                 tbEditora.Text = row.Cells["Editora"].Value.ToString();
                 tbIsbn.Text = row.Cells["ISBN"].Value.ToString();
+                isbnOriginal = row.Cells["ISBN"].Value.ToString();
+
             }
         }
 
@@ -171,6 +174,17 @@ namespace Forms
 
         private void btnAtualizarLivro_Click(object sender, EventArgs e)
         {
+
+            if (tbIsbn.Text != isbnOriginal)
+            {
+                if (GlobalConfig.Connection.LivroExiste(tbIsbn.Text))
+                {
+                    MessageBox.Show("Já existe um livro com esse ISBN.");
+                    tbIsbn.Focus();
+                    return;
+                }
+            }
+
             if (idLivroSelecionado == 0)
             {
                 MessageBox.Show("Selecione um livro primeiro.");
